@@ -1,0 +1,7 @@
+{
+  "namespace": "example",
+  "model_fingerprint": "replace-with-weights-adapters-and-config-digest",
+  "prefix_fingerprint": "replace-with-complete-causal-input-digest",
+  "layer": 0,
+  "slot": "key"
+}

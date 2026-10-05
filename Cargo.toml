@@ -1,0 +1,33 @@
+[package]
+name = "shifou"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.95"
+description = "Experimental model-independent tensor cache on yesno bit planes"
+license = "MIT OR Apache-2.0"
+
+[features]
+flight = ["dep:yesno-flight", "dep:arrow-array", "dep:arrow-flight", "dep:futures", "dep:tonic"]
+peer = ["dep:yesno-plugin", "dep:memmap2", "dep:libc", "dep:rayon"]
+
+[dependencies]
+yesno-core = { path = "../yesno/yesno-core" }
+yesno-flight = { path = "../yesno/yesno-flight", default-features = false, optional = true }
+yesno-plugin = { path = "../yesno/yesno-plugin", optional = true }
+memmap2 = { version = "0.9", optional = true }
+libc = { version = "0.2", optional = true }
+rayon = { version = "1", optional = true }
+arrow-array = { version = "=59.2.0", optional = true }
+arrow-flight = { version = "=59.2.0", optional = true }
+futures = { version = "0.3", optional = true }
+tonic = { version = "0.14", optional = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+sha2 = "0.10"
+thiserror = "2"
+
+[dev-dependencies]
+proptest = "1"
+yesno-flight = { path = "../yesno/yesno-flight", features = ["server"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net"] }
+tokio-stream = { version = "0.1", features = ["net"] }

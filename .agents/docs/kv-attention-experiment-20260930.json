@@ -1,0 +1,214 @@
+{
+  "model": "Qwen3-0.6B",
+  "model_revision": {
+    "model": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca"
+  },
+  "xinfer_revision": "b88c15334fb607ff52cdc3fd875c3da796dcc020",
+  "corpus_sha256": "d790b833ef8cf03a90db7bf1271b7520b83c45ce07ba3c1a9699df81e239eca0",
+  "replay": {
+    "prefix": 8192,
+    "offset": 4096,
+    "layers": 28,
+    "query_heads_per_layer": 16,
+    "rows": [
+      {
+        "fraction_denominator": 8,
+        "selected_fraction": 0.12781953453296366,
+        "page_fraction": 0.6839668615984406,
+        "attention_mass": 0.8261765221208667,
+        "minimum_attention_mass": 0.0198951605707407,
+        "oracle_attention_mass": 0.9658909422744598,
+        "relative_l2": 0.2113436094852731,
+        "full_cpu_us": 449.04267782738094,
+        "pipeline_yesno_us": 828.7126748511905,
+        "pipeline_matrix_us": 98.81814657738096,
+        "pipeline_packed_us": 82.70281250000001
+      },
+      {
+        "fraction_denominator": 4,
+        "selected_fraction": 0.25208338782235706,
+        "page_fraction": 0.8769884781397939,
+        "attention_mass": 0.8827043745134558,
+        "minimum_attention_mass": 0.04450005292892456,
+        "oracle_attention_mass": 0.9850822975859046,
+        "relative_l2": 0.142344083880071,
+        "full_cpu_us": 449.04267782738094,
+        "pipeline_yesno_us": 917.2691763392858,
+        "pipeline_matrix_us": 171.66143452380953,
+        "pipeline_packed_us": 149.62905059523808
+      },
+      {
+        "fraction_denominator": 2,
+        "selected_fraction": 0.5011110311938763,
+        "page_fraction": 0.9840965260373155,
+        "attention_mass": 0.941658834993307,
+        "minimum_attention_mass": 0.2368732988834381,
+        "oracle_attention_mass": 0.9965011669056756,
+        "relative_l2": 0.0695724514829846,
+        "full_cpu_us": 449.04267782738094,
+        "pipeline_yesno_us": 1129.170234375,
+        "pipeline_matrix_us": 347.4552961309524,
+        "pipeline_packed_us": 320.04221875
+      }
+    ],
+    "compact_payload_bytes": 252524608,
+    "index_setup_all_representations_ms": 2809.1488080000017,
+    "quantize_ms": 10431.664535000002
+  },
+  "continuation": [
+    {
+      "offset": 4096,
+      "selection": "yesno BitMatrix; packed equivalence asserted per query",
+      "prefix": 2048,
+      "scored_tokens": 8,
+      "rows": [
+        {
+          "mode": "native_bf16",
+          "vs_bf16": {
+            "mean_kl": 0.0,
+            "mean_nll": 0.981852768070608,
+            "top1_agreement": 1.0
+          }
+        },
+        {
+          "mode": "native_compact4",
+          "vs_bf16": {
+            "mean_kl": 0.01069901010109544,
+            "mean_nll": 1.035522092074216,
+            "top1_agreement": 0.875
+          }
+        },
+        {
+          "fraction_denominator": 1,
+          "vs_bf16": {
+            "mean_kl": 0.010361383362012106,
+            "mean_nll": 1.021099152595156,
+            "top1_agreement": 0.875
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.0005582460136553437,
+            "mean_nll": 1.021099152595156,
+            "top1_agreement": 1.0
+          }
+        },
+        {
+          "fraction_denominator": 2,
+          "vs_bf16": {
+            "mean_kl": 0.027414671854790688,
+            "mean_nll": 0.9607609755259778,
+            "top1_agreement": 1.0
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.02163561527954587,
+            "mean_nll": 0.9607609755259778,
+            "top1_agreement": 0.875
+          }
+        },
+        {
+          "fraction_denominator": 4,
+          "vs_bf16": {
+            "mean_kl": 0.03689780873005787,
+            "mean_nll": 1.013765958753908,
+            "top1_agreement": 1.0
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.024089005964324943,
+            "mean_nll": 1.013765958753908,
+            "top1_agreement": 0.875
+          }
+        },
+        {
+          "fraction_denominator": 8,
+          "vs_bf16": {
+            "mean_kl": 0.03975247220457546,
+            "mean_nll": 1.0449820992397707,
+            "top1_agreement": 0.875
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.016912019207189925,
+            "mean_nll": 1.0449820992397707,
+            "top1_agreement": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "offset": 16384,
+      "selection": "direct packed equivalent",
+      "prefix": 8192,
+      "scored_tokens": 8,
+      "rows": [
+        {
+          "mode": "native_bf16",
+          "vs_bf16": {
+            "mean_kl": 0.0,
+            "mean_nll": 1.8660643156113892,
+            "top1_agreement": 1.0
+          }
+        },
+        {
+          "mode": "native_compact4",
+          "vs_bf16": {
+            "mean_kl": 0.03288171426606393,
+            "mean_nll": 1.8184009537669237,
+            "top1_agreement": 0.875
+          }
+        },
+        {
+          "fraction_denominator": 1,
+          "vs_bf16": {
+            "mean_kl": 0.03263065196409589,
+            "mean_nll": 1.8082081580332665,
+            "top1_agreement": 0.875
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.000994268167828961,
+            "mean_nll": 1.8082081580332665,
+            "top1_agreement": 1.0
+          }
+        },
+        {
+          "fraction_denominator": 2,
+          "vs_bf16": {
+            "mean_kl": 0.04109817578370991,
+            "mean_nll": 1.89938272564997,
+            "top1_agreement": 0.875
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.008124229504655828,
+            "mean_nll": 1.89938272564997,
+            "top1_agreement": 1.0
+          }
+        },
+        {
+          "fraction_denominator": 4,
+          "vs_bf16": {
+            "mean_kl": 0.03435558353886287,
+            "mean_nll": 1.7680652983380782,
+            "top1_agreement": 0.875
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.03235000009392403,
+            "mean_nll": 1.7680652983380782,
+            "top1_agreement": 1.0
+          }
+        },
+        {
+          "fraction_denominator": 8,
+          "vs_bf16": {
+            "mean_kl": 0.08675764162266685,
+            "mean_nll": 1.797427102162704,
+            "top1_agreement": 0.75
+          },
+          "vs_native_compact4": {
+            "mean_kl": 0.06625969831927911,
+            "mean_nll": 1.797427102162704,
+            "top1_agreement": 0.875
+          }
+        }
+      ]
+    }
+  ],
+  "limits": "CPU warm replay over predecoded compact4 BF16-rounded KV; timing excludes indexing, encoding, transfers, packed decode, GPU attention, persistence. Continuation hook runs native attention to update cache and then substitutes CPU output: quality only, no throughput claim. Eight scored tokens per continuation context."
+}

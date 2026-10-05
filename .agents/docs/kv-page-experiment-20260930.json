@@ -1,0 +1,116 @@
+{
+  "construction": {
+    "model": "Qwen3-0.6B",
+    "model_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "xinfer_revision": "b88c15334fb607ff52cdc3fd875c3da796dcc020",
+    "corpus": "WikiText-2 test text as in the earlier xinfer evaluation",
+    "prefixes": [
+      { "tokens": 2048, "corpus_offset": 4096 },
+      { "tokens": 8192, "corpus_offset": 16384 }
+    ],
+    "layers": 28,
+    "query_heads_per_layer": 16,
+    "kv_heads_per_layer": 8,
+    "head_dim": 128,
+    "page_tokens": 16,
+    "mandatory_pages": "first and newest three",
+    "static_query_tokens_per_prefix": 1,
+    "quality_teacher_forced_tokens_per_prefix": 8,
+    "static_mass": "Exact BF16 QK softmax over all valid tokens, then sum mass on selected pages",
+    "quality": "BF16 centroid selection from original keys, exact CPU attention over selected decoded compact4 KV, continuation KV exact BF16",
+    "ranking_timing": "Five warm samples of five score-plus-top-page rankings per query; median sample then mean across 448 queries; excludes construction, persistence, transfer, attention"
+  },
+  "static_8192": {
+    "centroid_bf16_one_eighth": { "pages_per_head": 65.859375, "mass": 0.9307662289475752, "rank_us_per_head": 19.997174107142857 },
+    "centroid_f32_one_eighth": { "pages_per_head": 65.859375, "mass": 0.9308177001654384, "rank_us_per_head": 22.629517410714286 },
+    "max_token_sketch_one_eighth": { "pages_per_head": 66.75223214285714, "mass": 0.8498914654701251, "rank_us_per_head": 15.921371428571428 },
+    "coordinate_upper_one_eighth": { "mass": 0.9132807992156439, "rank_us_per_head": 30.27878125 },
+    "radius_upper_one_eighth": { "mass": 0.843878 },
+    "centroid_sketch_one_eighth": { "mass": 0.838069652453185, "rank_us_per_head": 2.1985321428571427 },
+    "page_oracle_one_eighth": { "mass": 0.942535507753021 },
+    "centroid_bf16_one_quarter": { "pages_per_head": 129.609375, "mass": 0.9609543157051518, "rank_us_per_head": 20.30478125 },
+    "page_oracle_one_quarter": { "mass": 0.9696182689867584 }
+  },
+  "static_2048": {
+    "centroid_f32_one_eighth": { "pages_per_head": 18.087, "mass": 0.880247 },
+    "max_token_sketch_one_eighth": { "mass": 0.810694 },
+    "page_oracle_one_eighth": { "mass": 0.893077 }
+  },
+  "continuation_kl_from_full_bf16": {
+    "prefix_2048": {
+      "native_compact4_full": 0.010699,
+      "centroid_bf16_one_eighth": 0.037857,
+      "centroid_bf16_one_quarter": 0.023047,
+      "earlier_token_sketch_one_eighth": 0.039752,
+      "earlier_token_sketch_one_quarter": 0.036898
+    },
+    "prefix_8192": {
+      "native_compact4_full": 0.03288171426606393,
+      "centroid_bf16_one_eighth": 0.11011626050351817,
+      "centroid_bf16_one_quarter": 0.06333630638008558,
+      "earlier_token_sketch_one_eighth": 0.086758,
+      "earlier_token_sketch_one_quarter": 0.034356
+    }
+  },
+  "selected_page_union_8192": {
+    "query_heads": 448,
+    "kv_head_pairs": 224,
+    "total_pages_per_kv_head": 513,
+    "one_eighth": {
+      "mean_pages_per_query_head": 65.859375,
+      "mean_pages_per_kv_head_after_union": 85.23660714285714,
+      "mean_pages_if_layer_record_spans_all_kv_heads": 208.28571428571428,
+      "fraction_of_pages_touched_by_fetch_group": { "1": 0.16615323029796714, "2": 0.22610345307713728, "4": 0.30391952102478414, "8": 0.4018379281537176, "16": 0.5098858256752994, "32": 0.6407685881370092, "64": 0.79838485101643 }
+    },
+    "one_quarter": {
+      "mean_pages_per_query_head": 129.609375,
+      "mean_pages_per_kv_head_after_union": 162.20535714285714,
+      "mean_pages_if_layer_record_spans_all_kv_heads": 334.7142857142857,
+      "fraction_of_pages_touched_by_fetch_group": { "1": 0.31618978000556947, "2": 0.4062761069340016, "4": 0.5108952937900306, "8": 0.6243386243386243, "16": 0.7282094124199388, "32": 0.8437761069340016, "64": 0.9337231968810916 }
+    }
+  },
+  "page_major_storage_probe": {
+    "model_layer": 0,
+    "old_tokens": 8160,
+    "exact_tail_tokens_excluded": 32,
+    "heads": 8,
+    "pages_per_head": 510,
+    "page_tokens": 16,
+    "pages_per_chunk": 4,
+    "bytes_per_k_or_v_page_per_head": 1024,
+    "bitmap_chunks": 1024,
+    "bitmap_bytes": 8388608,
+    "unpadded_compact_code_bytes": 8355840,
+    "portable_roaring_bytes": 8396820,
+    "code_one_fraction": 0.5118450224399567,
+    "hash_index_bytes_if_sha256_per_chunk": 32768,
+    "selected_one_eighth_chunks": 291,
+    "selected_one_quarter_chunks": 493,
+    "warm_median_ms": {
+      "full_ordinal_whole_sha256": 81.533456,
+      "full_dense_no_hash": 0.940135,
+      "full_dense_whole_sha256": 15.478556,
+      "full_dense_chunk_sha256": 15.59091,
+      "selected_one_eighth_no_hash": 0.351785,
+      "selected_one_eighth_chunk_sha256": 4.494014,
+      "selected_one_quarter_no_hash": 0.484124,
+      "selected_one_quarter_chunk_sha256": 7.550425
+    },
+    "write_side_ms_one_sample": {
+      "encode_compact": 201.733138,
+      "repack_page_bitmap": 42.383743,
+      "serialize_portable": 2.783829,
+      "commit_and_checkpoint": 870.890014
+    },
+    "benchmark_construction": "One shard; real compact4 code nibbles transposed from Qwen layer 0 into 4-page K/V bitmap chunks; commit, checkpoint, close, reopen; seven warm interleaved rounds per read arm; medians include plan or load, output allocation and copy; hashes checked against pre-persistence bytes",
+    "source_result": "../yesno/.agents-workspace/tmp/kv-page-probe-20260930/result-page-store-v4.json"
+  },
+  "source_results": {
+    "static_2048": "../yesno/.agents-workspace/tmp/kv-page-probe-20260930/result-2048-4096.json",
+    "static_8192": "../yesno/.agents-workspace/tmp/kv-page-probe-20260930/result-8192-16384-final.json",
+    "quality_2048": "../yesno/.agents-workspace/tmp/kv-page-probe-20260930/quality-2048-4096.json",
+    "quality_8192": "../yesno/.agents-workspace/tmp/kv-page-probe-20260930/quality-8192-16384.json",
+    "union_script": "../yesno/.agents-workspace/tmp/kv-page-probe-20260930/analyze_masks.py"
+  },
+  "limitations": "All-layer page fractions remain logical estimates. Actual yesno read timing covers one warm reopened layer with a prototype page-major layout; codec parameters, exact tail, centroid index, hash metadata reads, GPU attention and end-to-end inference are excluded. Current shifou layout still requires full reconstruction. Model quality uses eight logits per prefix."
+}
